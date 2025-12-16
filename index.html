@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simbio Design - Transformando Ideias em Arte</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <header id="header" class="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#hero">
+                        <img src="assets/images/logo.png" alt="Simbio Design" class="logo-img" id="siteLogo">
+                    </a>
+                </div>
+
+                <!-- Menu Desktop -->
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="nav-link active">Início</a></li>
+                    <li><a href="#servicos-pacotes" class="nav-link">Serviços</a></li>
+                    <li><a href="#hero-carrossel" class="nav-link">Portfólio</a></li>
+                    <li><a href="#processo" class="nav-link">Sobre</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+
+                <!-- Menu Mobile Toggle -->
+                <button class="hamburger" aria-label="Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Transformando suas ideias em arte<br>
+                    <span class="hero-subtitle">de forma estratégica & marcante</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Conte a história da sua marca, seja conhecido. No off e no online, 
+                    construa uma marca duradoura, imponente e lucrativa.
+                </p>
+                
+                <a href="https://wa.me/5518996449437" class="btn btn-primary btn-large" target="_blank">
+                    <span>Quero minha marca</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- CARROSSEL LARGURA TOTAL -->
+        <div class="carousel-fullwidth" id="hero-carrossel">
+            <div class="carousel-track" id="carousel1">
+                <!-- Itens gerados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO PROPÓSITO ===== -->
+    <section class="proposito-section">
+        <!-- Imagem preta (fundo3.png) -->
+        <div class="proposito-image-overlay"></div>
+        
+        <!-- Nova imagem flor.png -->
+        <div class="proposito-flor-overlay"></div>
+        
+        <!-- Container para imagem revelada pelas formas rosa -->
+        <div class="image-reveal-container" id="imageRevealContainer">
+            <div class="revealed-image" id="revealedImage"></div>
+        </div>
+        
+        <!-- Conteúdo -->
+        <div class="proposito-content">
+            <h1 class="proposito-title">PROPÓSITO</h1>
+            <p class="proposito-text">
+                A Simbio foi criada com a intenção de unir empatia, criatividade e profissionalismo para criar marcas com propósito. O nome vem de simbiose, onde dois organismos atuam em conjunto com a finalidade de beneficiar as duas partes.
+            </p>
+            <div class="proposito-features">
+                <div class="feature-box interactive-shape" data-image="assets/images/flor.png">
+                    <span class="feature-text">Marcas únicas</span>
+                </div>
+                <div class="feature-box interactive-shape" data-image="assets/images/fundo3.png">
+                    <span class="feature-text">Arte estratégica</span>
+                </div>
+                <div class="feature-box interactive-shape" data-image="assets/images/fundo2.png">
+                    <span class="feature-text">Credibilidade</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVIÇOS E PACOTES ===== --> 
+    <!-- Faixa rosa no topo -->
+    <div class="faixa-topo-rosa">
+        <div class="container">
+            <h2 class="faixa-texto">Serviços e pacotes</h2>
+        </div>
+    </div>
+
+    <!-- ===== SERVIÇOS E PACOTES ===== -->
+    <section id="servicos-pacotes" class="servicos-pacotes">
+        <div class="container">
+            <!-- Seção 1: Identidades Visuais -->
+            <div class="categoria-servicos">
+                <div class="categoria-header">
+                    <h3 class="categoria-titulo">Identidades Visuais</h3>
+                    <p class="categoria-descricao">Ideal para quem deseja construir uma marca profissional e consistente, com todos os elementos visuais essenciais para se destacar.</p>
+                </div>
+
+                <div class="pacotes-grid">
+                    <!-- Pacote 1: Marca Essencial -->
+                    <div class="pacote-card pacote-essencial">
+                        <div class="pacote-header">
+                            <h4 class="pacote-titulo">Marca Essencial</h4>
+                        </div>
+                        
+                        <ul class="pacote-lista">
+                            <li class="pacote-item">
+                                <span class="item-detalhe">Logotipo principal</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Variações</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Manual de marca</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Paleta de cores</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Tipografia</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Estampa da marca</span>
+                            </li>
+                        </ul>
+
+                        <div class="pacote-preco-container">
+                            <div class="preco-content">
+                                <div class="preco-valor">R$ 375</div>
+                                <p class="preco-parcelamento">Até 2x sem juros no cartão de crédito ou 7% de desconto à vista no pix</p>
+                            </div>
+                            <div class="preco-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pacote 2: Marca Viva -->
+                    <div class="pacote-card pacote-destaque">
+                        <div class="pacote-destaque-badge">Mais Popular</div>
+                        <div class="pacote-header">
+                            <h4 class="pacote-titulo">Marca Viva</h4>
+                        </div>
+                        
+                        <ul class="pacote-lista">
+                            <li class="pacote-item">
+                                <span class="item-detalhe">Logotipo principal</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Variações</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Manual de marca</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Paleta de cores</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Tipografia</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Estampa da marca</span>
+                            </li>
+                            <li class="pacote-item destaque">
+                                <span class="item-detalhe">• Aplicações da marca (até 4)</span>
+                            </li>
+                        </ul>
+
+                        <div class="pacote-preco-container">
+                            <div class="preco-content">
+                                <div class="preco-valor">R$ 515</div>
+                                <p class="preco-parcelamento">Até 3x sem juros no cartão de crédito ou 7% de desconto à vista no pix</p>
+                            </div>
+                            <div class="preco-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pacote 3: Presença Total -->
+                    <div class="pacote-card pacote-total">
+                        <div class="pacote-header">
+                            <h4 class="pacote-titulo">Presença Total</h4>
+                        </div>
+                        
+                        <ul class="pacote-lista">
+                            <li class="pacote-item">
+                                <span class="item-detalhe">Logotipo principal</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Variações</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Manual de marca</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Paleta de cores</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Tipografia</span>
+                            </li>
+                            <li class="pacote-item">
+                                <span class="item-detalhe">• Estampa da marca</span>
+                            </li>
+                            <li class="pacote-item destaque">
+                                <span class="item-detalhe">• Ebook com aplicação da marca online & offline</span>
+                            </li>
+                        </ul>
+
+                        <div class="pacote-preco-container">
+                            <div class="preco-content">
+                                <div class="preco-valor">R$ 780</div>
+                                <p class="preco-parcelamento">Até 4x sem juros no cartão de crédito ou 7% de desconto à vista no pix</p>
+                            </div>
+                            <div class="preco-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                                </div>
+                                    </section>
+
+    <!-- ===== SEÇÃO EMBALAGENS & PAPELARIA ===== -->
+    <section id="embalagens" class="embalagens-section">
+        <!-- Título e descrição -->
+        <div class="container">
+            <div class="categoria-servicos">
+                <div class="categoria-header">
+                    <h3 class="categoria-titulo">Embalagens & Papelaria</h3>
+                    <p class="categoria-descricao">Indicado para marcas que querem fortalecer a presença física com materiais gráficos e embalagens alinhados ao posicionamento e personalidade da empresa.</p>
+        </div>
+        
+        <!-- ÁREA VERDE QUE VAI ENCOSTAR NA BORDA -->
+        <div class="area-verde-encostada">
+            <div class="conteudo-verde">
+                <div class="item-verde">
+                    <img src="assets/images/icon1.png" alt="Papelaria">
+                    <h4>PAPELARIA GERAL</h4>
+                    <p>Papelaria em especial pode ser utilizada pelo tratamento especial desde o programa identificado visual da marca.</p>
+                </div>
+                <div class="item-verde">
+                    <img src="assets/images/icon2.png" alt="Cardápios">
+                    <h4>CARDÁPIOS</h4>
+                    <p>A primeira vez, a página que aparece apresentar uma produtora de forma clara, afirmando a intimidade e coerência da marca.</p>
+                </div>
+                <div class="item-verde">
+                    <img src="assets/images/icon3.png" alt="Embalagens">
+                    <h4>EMBALAGENS</h4>
+                    <p>Embalagens são substituídas que valorizam o produto e fortalecem a experiência do cliente.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Botão -->
+        <div class="container">
+            <div class="embalagem-cta">
+                <a href="https://wa.me/5518996449437" class="btn-embalagem" target="_blank">
+                    <span>Quero um orçamento</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO ETAPAS DO PROCESSO DE CRIAÇÃO ===== -->
+    <div class="faixa-topo-rosa-processo">
+        <div class="container">
+            <h2 class="faixa-texto-processo">Etapas do processo de criação</h2>
+        </div>
+    </div>
+    
+    <section id="processo" class="processo-section">
+        <div class="container">
+            <div class="etapas-grid">
+                <!-- Etapa 1 -->
+                <div class="etapa-card">
+                    <div class="etapa-conteudo">
+                        <div class="etapa-numero">1° Passo</div>
+                        <h3 class="etapa-titulo">Escolha serviços</h3>
+                    </div>
+                </div>
+                
+                <!-- Etapa 2 -->
+                <div class="etapa-card">
+                    <div class="etapa-conteudo">
+                        <div class="etapa-numero">2° Passo</div>
+                        <h3 class="etapa-titulo">Contrato</h3>
+                    </div>
+                </div>
+                
+                <!-- Etapa 3 -->
+                <div class="etapa-card">
+                    <div class="etapa-conteudo">
+                        <div class="etapa-numero">3° Passo</div>
+                        <h3 class="etapa-titulo">Pagamento</h3>
+                    </div>
+                </div>
+                
+                <!-- Etapa 4 -->
+                <div class="etapa-card">
+                    <div class="etapa-conteudo">
+                        <div class="etapa-numero">4° Passo</div>
+                        <h3 class="etapa-titulo">Briefing</h3>
+                    </div>
+                </div>
+                
+                <!-- Etapa 5 -->
+                <div class="etapa-card">
+                    <div class="etapa-conteudo">
+                        <div class="etapa-numero">5° Passo</div>
+                        <h3 class="etapa-titulo">Início</h3>
+                    </div>
+                </div>
+                
+                <!-- Etapa 6 -->
+                <div class="etapa-card">
+                    <div class="etapa-conteudo">
+                        <div class="etapa-numero">6° Passo</div>
+                        <h3 class="etapa-titulo">Finalização</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Divisor -->
+            <div class="processo-divisor">
+                <div class="linha-divisoria"></div>
+                <h2 class="texto-divisor">O que nossos clientes dizem</h2>
+                <div class="linha-divisoria"></div>
+            </div>
+
+            <!-- ===== CARROSSEL DE DEPOIMENTOS ===== -->
+            <div class="container">
+                <!-- Setas de navegação -->
+                <button class="carrossel-seta seta-esquerda" aria-label="Depoimento anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <button class="carrossel-seta seta-direita" aria-label="Próximo depoimento">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Carrossel container -->
+                <div class="depoimentos-carrossel">
+                    <div class="carrossel-track" id="depoimentosTrack">
+                        <!-- Item 1 -->
+                        <div class="depoimento-item">
+                            <div class="depoimento-foto">
+                                <img src="assets/images/depoimento1.jpg" alt="Cliente 1" loading="lazy">
+                            </div>
+                            <div class="depoimento-conteudo">
+                                <div class="depoimento-texto">
+                                    <p>"Trabalho incrível! A Simbio Design transformou completamente a identidade da minha marca. Superou todas as expectativas!"</p>
+                                </div>
+                                <div class="depoimento-autor">
+                                    <h4>Maria Silva</h4>
+                                    <span>CEO da EcoStore</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="depoimento-item">
+                            <div class="depoimento-foto">
+                                <img src="assets/images/depoimento2.jpg" alt="Cliente 2" loading="lazy">
+                            </div>
+                            <div class="depoimento-conteudo">
+                                <div class="depoimento-texto">
+                                    <p>"Profissionalismo e criatividade! O processo foi muito bem conduzido e o resultado final ficou perfeito para meu negócio."</p>
+                                </div>
+                                <div class="depoimento-autor">
+                                    <h4>João Santos</h4>
+                                    <span>Fundador da TechInnovate</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="depoimento-item">
+                            <div class="depoimento-foto">
+                                <img src="assets/images/depoimento3.jpg" alt="Cliente 3" loading="lazy">
+                            </div>
+                            <div class="depoimento-conteudo">
+                                <div class="depoimento-texto">
+                                    <p>"A atenção aos detalhes e o entendimento do meu negócio foram fundamentais. Recomendo muito a Simbio Design!"</p>
+                                </div>
+                                <div class="depoimento-autor">
+                                    <h4>Ana Costa</h4>
+                                    <span>Proprietária da Bella Café</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Indicadores de slide (bolinhas) -->
+                <div class="carrossel-indicadores" id="depoimentosIndicadores">
+                </div>
+            </div>
+
+            <div class="container-com-imagem">
+                <div class="conteudo-texto-direita">
+                    <div class="linha-titulo">
+                        <span class="texto-chamativo-maior">Vem transformar sua marca junto comigo!</span>
+                    </div>
+                    <div class="linha-subtitulo">
+                        <span class="texto-chamativo-menor">Se destaque da concorrência com um design único e estratégico. Conecte-se com o seu cliente.</span>
+                    </div>
+                    <div class="botao-container">
+                        <a href="https://wa.me/5518996449437" target="_blank" class="botao-chamada">
+                            <span>Quero transformar a história da minha marca</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contato" class="container-final">
+                <div class="linha-principal">
+                    <div class="coluna-esquerda">
+                        <div class="marca">
+                            <span class="simbio">Simbio</span>
+                            </div>
+                            <span class="linha-design">Design</span>
+                        </div>
+                        <div class="informacoes">
+                            <span class="texto-2">Atendimento online</span><br>
+                            <span class="texto-3">Dúvidas? Fale comigo através do whatsapp</span>
+                        </div>
+                    </div>
+                    <div class="coluna-direita">
+                        <a href="https://wa.me/5518996449437" target="_blank" class="botao-mensagem">
+                            <span>Enviar mensagem</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
