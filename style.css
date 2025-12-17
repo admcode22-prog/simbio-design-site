@@ -803,22 +803,51 @@ section {
 /* ÁREA VERDE */
 .area-verde-encostada {
     background-color: #B4D17D;
-    width: 100%;
     position: relative;
     padding: 70px 0;
     border-radius: 0 120px 120px 0;
     margin: 40px 0 50px;
     box-shadow: 0 20px 40px rgba(180, 209, 125, 0.3);
     overflow: hidden;
+    
+    /* NOVO: Vai até o final da tela na esquerda */
+    width: calc(100% + 100px);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
+/* Container interno que mantém o conteúdo centralizado */
 .conteudo-verde {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px 0 20px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Se quiser que o fundo verde vá ainda mais para a esquerda, 
+   removendo qualquer padding/margin do container pai */
+.embalagens-section {
+    padding: 60px 0;
+    overflow: hidden; /* Importante para conter a área verde expandida */
+}
+
+/* Opcional: Adicionar efeito de gradiente na borda direita */
+.area-verde-encostada::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(180, 209, 125, 0.1));
+    pointer-events: none;
 }
 
 .item-verde {
@@ -1328,7 +1357,7 @@ section {
 
 .linha-design {
     color: #B4D17D;
-    font-family: 'Laviossa', sans-serif;
+    font-family: 'Sora', sans-serif;
     font-size: 1.5rem;
     margin: 0;
     padding: 0;
@@ -1573,6 +1602,26 @@ section {
     }
     
     /* Area verde */
+    @media (max-width: 1024px) {
+    .area-verde-encostada {
+        padding: 60px 0;
+        border-radius: 0 80px 80px 0;
+    }
+    
+    .conteudo-verde {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 60px;
+    }
+    
+    .item-verde {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+/* Celulares (576px - 768px) */
+@media (max-width: 768px) {
     .area-verde-encostada {
         padding: 50px 0;
         border-radius: 0 60px 60px 0;
@@ -1580,8 +1629,58 @@ section {
     }
     
     .conteudo-verde {
-        padding: 0 30px;
+        padding: 0 40px;
+        gap: 30px;
     }
+    
+    .item-verde img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .item-verde h4 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Celulares pequenos (até 576px) */
+@media (max-width: 576px) {
+    .area-verde-encostada {
+        padding: 40px 0;
+        border-radius: 0 40px 40px 0;
+    }
+    
+    .conteudo-verde {
+        padding: 0 30px;
+        gap: 25px;
+    }
+    
+    .item-verde img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .item-verde h4 {
+        font-size: 1rem;
+    }
+    
+    .item-verde p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Telas muito pequenas (até 360px) */
+@media (max-width: 360px) {
+    .area-verde-encostada {
+        padding: 30px 0;
+        border-radius: 0 30px 30px 0;
+    }
+    
+    .conteudo-verde {
+        padding: 0 20px;
+        gap: 20px;
+    }
+}
     
     /* Processo */
     .faixa-texto-processo {
