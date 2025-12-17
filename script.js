@@ -5,7 +5,8 @@ function initMobileMenu() {
     
     if (!hamburger || !navMenu) return;
     
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         
@@ -52,7 +53,7 @@ function initHeaderScroll() {
     });
 }
 
-// ===== CARROSSEL DE PROJETOS - LARGURA TOTAL =====
+// ===== CARROSSEL DE PROJETOS =====
 function initProjectsCarousel() {
     const carousel = document.getElementById('carousel1');
     
@@ -101,20 +102,37 @@ function initProjectsCarousel() {
     // Popula o carrossel
     carousel.innerHTML = generateCarouselHTML(duplicatedProjects);
     
-    // Ajusta largura para tela toda
-    const itemWidth = 300;
-    const gap = 30;
-    const totalWidth = (itemWidth + gap) * duplicatedProjects.length;
-    carousel.style.width = `${totalWidth}px`;
+    // Ajusta largura baseado no tamanho da tela
+    function updateCarouselWidth() {
+        const viewportWidth = window.innerWidth;
+        let itemWidth = 250; // Default para desktop
+        
+        if (viewportWidth < 768) {
+            itemWidth = 150;
+        } else if (viewportWidth < 1024) {
+            itemWidth = 200;
+        }
+        
+        const gap = 20;
+        const totalWidth = (itemWidth + gap) * duplicatedProjects.length;
+        carousel.style.width = `${totalWidth}px`;
+        
+        // Ajusta tamanho dos itens
+        const items = carousel.querySelectorAll('.carousel-item');
+        items.forEach(item => {
+            item.style.flex = `0 0 ${itemWidth}px`;
+            item.style.height = `${itemWidth * 0.68}px`;
+        });
+        
+        // Ajusta velocidade da animação
+        const speedMultiplier = viewportWidth / 1920;
+        const baseDuration = 120;
+        const animationDuration = baseDuration / speedMultiplier;
+        carousel.style.animationDuration = `${animationDuration}s`;
+    }
     
-    // Ajusta velocidade baseada no viewport
-    const viewportWidth = window.innerWidth;
-    const speedMultiplier = viewportWidth / 1920;
-    const baseDuration = 120;
-    const animationDuration = baseDuration / speedMultiplier;
-    
-    // Aplica animação
-    carousel.style.animation = `scrollFullWidth ${animationDuration}s linear infinite`;
+    // Inicializa
+    updateCarouselWidth();
     
     // Pausa/play no hover
     const carouselContainer = carousel.closest('.carousel-fullwidth');
@@ -128,43 +146,8 @@ function initProjectsCarousel() {
         });
     }
     
-    // Overlay nos itens (opcional)
-    const style = document.createElement('style');
-    style.textContent = `
-        .project-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, 
-                rgba(29, 29, 27, 0.9) 0%,
-                rgba(29, 29, 27, 0.5) 50%,
-                transparent 100%);
-            padding: 15px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .carousel-item:hover .project-overlay {
-            transform: translateY(0);
-        }
-        
-        .project-overlay h4 {
-            color: white;
-            font-size: 16px;
-            margin-bottom: 5px;
-            font-weight: 600;
-            font-family: 'Sora', sans-serif;
-        }
-        
-        .project-overlay p {
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 500;
-            font-family: 'Sora', sans-serif;
-        }
-    `;
-    document.head.appendChild(style);
+    // Atualiza no resize
+    window.addEventListener('resize', updateCarouselWidth);
 }
 
 // ===== FORMULÁRIO DE CONTATO =====
@@ -205,6 +188,15 @@ function initSmoothScroll() {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
+                // Fecha menu mobile se estiver aberto
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+                if (hamburger && navMenu && navMenu.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
                 window.scrollTo({
                     top: target.offsetTop - 80,
                     behavior: 'smooth'
@@ -214,42 +206,124 @@ function initSmoothScroll() {
     });
 }
 
-// Versão simplificada do carrossel
-function simpleCarrossel() {
+// ===== CARROSSEL DE DEPOIMENTOS =====
+function initDepoimentosCarousel() {
+    const track = document.getElementById('depoimentosTrack');
     const items = document.querySelectorAll('.depoimento-item');
     const prevBtn = document.querySelector('.seta-esquerda');
     const nextBtn = document.querySelector('.seta-direita');
-    const track = document.getElementById('depoimentosTrack');
+    const indicators = document.querySelectorAll('.carrossel-indicador');
     
-    if (!items.length) return;
+    if (!track || items.length === 0) return;
     
-    let current = 0;
+    let currentIndex = 0;
+    const totalItems = items.length;
     
-    function update() {
-        items.forEach((item, index) => {
-            item.style.display = index === current ? 'flex' : 'none';
+    function updateCarousel() {
+        // Move o track
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Atualiza indicadores
+        indicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+                indicator.classList.add('ativo');
+            } else {
+                indicator.classList.remove('ativo');
+            }
         });
         
-        // Atualiza setas
-        prevBtn.style.opacity = current === 0 ? '0.3' : '1';
-        nextBtn.style.opacity = current === items.length - 1 ? '0.3' : '1';
+        // Atualiza estado das setas
+        if (prevBtn) {
+            prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+            prevBtn.disabled = currentIndex === 0;
+        }
+        
+        if (nextBtn) {
+            nextBtn.style.opacity = currentIndex === totalItems - 1 ? '0.5' : '1';
+            nextBtn.disabled = currentIndex === totalItems - 1;
+        }
     }
     
-    prevBtn.addEventListener('click', () => {
-        if (current > 0) {
-            current--;
-            update();
+    // Event listeners para setas
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < totalItems - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+    }
+    
+    // Event listeners para indicadores
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = index;
+            updateCarousel();
+        });
+    });
+    
+    // Suporte a touch/swipe para mobile
+    let startX = 0;
+    let endX = 0;
+    
+    track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+    
+    track.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    });
+    
+    track.addEventListener('touchend', () => {
+        const diffX = startX - endX;
+        
+        if (Math.abs(diffX) > 50) { // Limite mínimo para considerar como swipe
+            if (diffX > 0 && currentIndex < totalItems - 1) {
+                // Swipe para a esquerda
+                currentIndex++;
+            } else if (diffX < 0 && currentIndex > 0) {
+                // Swipe para a direita
+                currentIndex--;
+            }
+            updateCarousel();
         }
     });
     
-    nextBtn.addEventListener('click', () => {
-        if (current < items.length - 1) {
-            current++;
-            update();
-        }
-    });
+    // Inicializa
+    updateCarousel();
     
-    update();
+    // Auto-play (opcional)
+    let autoPlayInterval;
+    
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        }, 5000); // Muda a cada 5 segundos
+    }
+    
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+    
+    // Inicia auto-play
+    startAutoPlay();
+    
+    // Pausa auto-play no hover
+    const carouselContainer = track.closest('.depoimentos-carrossel');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+        carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    }
 }
 
 // ===== ATIVAR LINK ATUAL =====
@@ -293,120 +367,53 @@ function initInteractiveShapes() {
         shape.addEventListener('mouseenter', () => {
             const imageUrl = shape.getAttribute('data-image');
             
-            // Define a imagem de fundo
-            revealedImage.style.backgroundImage = `url('${imageUrl}')`;
-            
-            // Mostra o container
-            imageRevealContainer.classList.add('active');
+            if (imageUrl) {
+                revealedImage.style.backgroundImage = `url('${imageUrl}')`;
+                imageRevealContainer.classList.add('active');
+            }
         });
         
         shape.addEventListener('mouseleave', () => {
-            // Esconde o container após um pequeno delay
             setTimeout(() => {
-                imageRevealContainer.classList.remove('active');
+                if (!imageRevealContainer.matches(':hover')) {
+                    imageRevealContainer.classList.remove('active');
+                }
             }, 300);
         });
     });
     
-    // Adiciona efeito de brilho nas formas
-    shapes.forEach(shape => {
-        shape.addEventListener('mousemove', (e) => {
-            const rect = shape.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            shape.style.setProperty('--mouse-x', `${x}px`);
-            shape.style.setProperty('--mouse-y', `${y}px`);
-        });
+    // Fecha ao clicar fora
+    imageRevealContainer.addEventListener('click', (e) => {
+        if (e.target === imageRevealContainer) {
+            imageRevealContainer.classList.remove('active');
+        }
     });
 }
 
-// ===== CLIQUE NA ÁREA DE PREÇO =====
-function initPriceClick() {
-    const priceContainers = document.querySelectorAll('.pacote-preco-container');
-    
-    priceContainers.forEach(container => {
-        container.addEventListener('click', function() {
-            const packageTitle = this.closest('.pacote-card').querySelector('.pacote-titulo').textContent;
-            const packagePrice = this.querySelector('.preco-valor').textContent;
-            
-            
-            // Role para o formulário de contato
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                window.scrollTo({
-                    top: contactSection.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-        
-        // Estilo de cursor
-        container.style.cursor = 'pointer';
-    });
-}
-
-// ===== INICIALIZAR TUDO =====
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Simbio Design inicializando...');
-    
-    initMobileMenu();
-    initHeaderScroll();
-    initProjectsCarousel();
-    initContactForm();
-    initSmoothScroll();
-    initActiveLink();
-    initInteractiveShapes();
-    initPriceClick(); // <-- NOVA FUNÇÃO PARA CLIQUE NA ÁREA DE PREÇO
-    
-    // Logo hover effect
-    const logo = document.getElementById('siteLogo');
-    if (logo) {
-        logo.addEventListener('mouseenter', () => {
-            logo.style.transform = 'scale(1.05)';
-        });
-        
-        logo.addEventListener('mouseleave', () => {
-            logo.style.transform = 'scale(1)';
-        });
-    }
-    
-    console.log('✅ Simbio Design carregado com sucesso!');
-});
-
-// ===== RESIZE HANDLER =====
-window.addEventListener('resize', function() {
-    // Recalcula animação do carrossel em resize
-    const carousel = document.getElementById('carousel1');
-    if (carousel && carousel.closest('.carousel-fullwidth')) {
-        const viewportWidth = window.innerWidth;
-        const speedMultiplier = viewportWidth / 1920;
-        const baseDuration = 120;
-        const animationDuration = baseDuration / speedMultiplier;
-        
-        carousel.style.animationDuration = `${animationDuration}s`;
-        
-        // Ajusta tamanho dos itens para responsividade
-        const itemWidth = viewportWidth < 768 ? 180 : 
-                         viewportWidth < 1024 ? 220 : 
-                         viewportWidth < 1200 ? 250 : 300;
-        
-        const items = carousel.querySelectorAll('.carousel-item');
-        items.forEach(item => {
-            item.style.flex = `0 0 ${itemWidth}px`;
-            item.style.height = `${itemWidth * 0.666}px`;
-        });
-    }
-});
-
-// ===== CLIQUE NOS PACOTES PARA WHATSAPP (COM MENSAGENS ESPECÍFICAS) =====
+// ===== CLIQUE NOS PACOTES PARA WHATSAPP =====
 function initPackageWhatsApp() {
     const pacoteCards = document.querySelectorAll('.pacote-card');
     
     pacoteCards.forEach(card => {
+        // Adiciona cursor pointer
         card.style.cursor = 'pointer';
         
-        card.addEventListener('click', function() {
+        // Adiciona efeito visual no hover
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+        
+        // Evento de clique
+        card.addEventListener('click', function(e) {
+            // Previne clique na área do preço (que tem seu próprio evento)
+            if (e.target.closest('.pacote-preco-container')) {
+                return;
+            }
+            
             const titulo = this.querySelector('.pacote-titulo').textContent;
             const preco = this.querySelector('.preco-valor').textContent;
             
@@ -435,21 +442,135 @@ function initPackageWhatsApp() {
             // Abre o WhatsApp
             window.open(whatsappURL, '_blank');
         });
-        
-        // Efeito visual no hover
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
     });
 }
 
-// Adicione esta função ao DOMContentLoaded
+// ===== CLIQUE NA ÁREA DE PREÇO =====
+function initPriceClick() {
+    const priceContainers = document.querySelectorAll('.pacote-preco-container');
+    
+    priceContainers.forEach(container => {
+        container.addEventListener('click', function(e) {
+            e.stopPropagation(); // Previne que o clique suba para o card
+            
+            const card = this.closest('.pacote-card');
+            const packageTitle = card.querySelector('.pacote-titulo').textContent;
+            const packagePrice = this.querySelector('.preco-valor').textContent;
+            
+            // Mensagem para WhatsApp
+            let mensagem = `Olá! Tenho interesse no pacote *${packageTitle}* (${packagePrice}). Gostaria de contratar este serviço.`;
+            
+            // Codifica a mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            
+            // URL do WhatsApp com mensagem pré-preenchida
+            const whatsappURL = `https://wa.me/5518996449437?text=${mensagemCodificada}`;
+            
+            // Abre o WhatsApp
+            window.open(whatsappURL, '_blank');
+        });
+        
+        // Estilo de cursor
+        container.style.cursor = 'pointer';
+    });
+}
+
+// ===== LOADING LAZY =====
+function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    }
+}
+
+// ===== INICIALIZAR TUDO =====
 document.addEventListener('DOMContentLoaded', function() {
-    // ... suas outras inicializações
+    console.log('🚀 Simbio Design inicializando...');
+    
+    initMobileMenu();
+    initHeaderScroll();
+    initProjectsCarousel();
+    initContactForm();
+    initSmoothScroll();
+    initActiveLink();
+    initInteractiveShapes();
+    initPriceClick();
     initPackageWhatsApp();
+    initDepoimentosCarousel();
+    initLazyLoading();
+    
+    // Logo hover effect
+    const logo = document.getElementById('siteLogo');
+    if (logo) {
+        logo.addEventListener('mouseenter', () => {
+            logo.style.transform = 'scale(1.05)';
+        });
+        
+        logo.addEventListener('mouseleave', () => {
+            logo.style.transform = 'scale(1)';
+        });
+    }
+    
+    console.log('✅ Simbio Design carregado com sucesso!');
 });
 
+// ===== RESIZE HANDLER =====
+let resizeTimeout;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(function() {
+        // Recalcula animação do carrossel em resize
+        const carousel = document.getElementById('carousel1');
+        if (carousel && carousel.closest('.carousel-fullwidth')) {
+            const viewportWidth = window.innerWidth;
+            const speedMultiplier = viewportWidth / 1920;
+            const baseDuration = 120;
+            const animationDuration = baseDuration / speedMultiplier;
+            
+            carousel.style.animationDuration = `${animationDuration}s`;
+        }
+    }, 250);
+});
+
+// ===== TOUCH DEVICE DETECTION =====
+function isTouchDevice() {
+    return 'ontouchstart' in window || 
+           navigator.maxTouchPoints > 0 || 
+           navigator.msMaxTouchPoints > 0;
+}
+
+// Ajustes para dispositivos touch
+if (isTouchDevice()) {
+    document.documentElement.classList.add('touch-device');
+    
+    // Remove hover effects em elementos específicos
+    const hoverElements = document.querySelectorAll('.pacote-card, .carousel-item, .feature-box');
+    hoverElements.forEach(el => {
+        el.classList.add('no-hover');
+    });
+}
+
+// ===== PERFORMANCE OPTIMIZATION =====
+// Previne animações durante o scroll para melhor performance
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            // Códigos que precisam rodar durante o scroll
+            ticking = false;
+        });
+        ticking = true;
+    }
+});

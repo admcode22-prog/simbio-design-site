@@ -2,13 +2,14 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Simbio Design - Transformando Ideias em Arte</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- ===== NAVBAR ===== -->
@@ -241,8 +242,13 @@
                             </div>
                             <div class="preco-arrow">
                                 <i class="fas fa-chevron-right"></i>
-                                </div>
-                                    </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ===== SEÇÃO EMBALAGENS & PAPELARIA ===== -->
     <section id="embalagens" class="embalagens-section">
@@ -353,7 +359,7 @@
             </div>
 
             <!-- ===== CARROSSEL DE DEPOIMENTOS ===== -->
-            <div class="container">
+            <div class="depoimentos-container">
                 <!-- Setas de navegação -->
                 <button class="carrossel-seta seta-esquerda" aria-label="Depoimento anterior">
                     <i class="fas fa-chevron-left"></i>
@@ -418,6 +424,9 @@
                 
                 <!-- Indicadores de slide (bolinhas) -->
                 <div class="carrossel-indicadores" id="depoimentosIndicadores">
+                    <span class="carrossel-indicador ativo"></span>
+                    <span class="carrossel-indicador"></span>
+                    <span class="carrossel-indicador"></span>
                 </div>
             </div>
 
@@ -443,7 +452,6 @@
                     <div class="coluna-esquerda">
                         <div class="marca">
                             <span class="simbio">Simbio</span>
-                            </div>
                             <span class="linha-design">Design</span>
                         </div>
                         <div class="informacoes">
