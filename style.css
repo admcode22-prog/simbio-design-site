@@ -1369,7 +1369,7 @@ section {
 }
 
 .texto-2 {
-    color: #FF0A4C;
+    color: black;
     font-size: 1.1rem;
     font-weight: 600;
 }
@@ -1377,6 +1377,11 @@ section {
 .texto-3 {
     color: #666666;
     font-size: 1rem;
+}
+
+.texto-4{
+    color: #FF0A4C;
+    font-family: 'Sora';
 }
 
 .coluna-direita {
@@ -2052,7 +2057,7 @@ section {
     display: block;
     margin-bottom: 15px;
     font-size: 1.1rem;
-    color: #FF0A4C;
+    color: black
 }
 
 .redes-sociais {
