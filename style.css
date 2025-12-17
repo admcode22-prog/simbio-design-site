@@ -371,8 +371,8 @@ section {
 }
 
 .carousel-fullwidth .carousel-item {
-    flex: 0 0 250px;
-    height: 170px;
+    flex: 0 0 auto;
+    height: auto;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
@@ -380,6 +380,7 @@ section {
     transition: all 0.3s ease;
     background-color: #FFFFFF;
     border: 2px solid rgba(255, 255, 255, 0.3);
+    
 }
 
 .carousel-fullwidth .carousel-item:hover {
@@ -2202,5 +2203,122 @@ section {
     
     .redes-sociais {
         gap: 20px;
+    }
+}
+
+/* ===== ESTILOS PARA O CARROSSEL ===== */
+.carousel-fullwidth .project-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    
+}
+
+.carousel-fullwidth .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.carousel-fullwidth .carousel-item:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.carousel-fullwidth .project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.carousel-fullwidth .carousel-item:hover .project-overlay {
+    transform: translateY(0);
+}
+
+.carousel-fullwidth .project-overlay h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-family: 'Sora', sans-serif;
+}
+
+.carousel-fullwidth .project-overlay p {
+    font-size: 12px;
+    opacity: 0.8;
+    font-family: 'Sora', sans-serif;
+}
+
+/* Placeholder para quando a imagem não carrega */
+.carousel-fullwidth .placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #FF5A8D, #FF0A4C);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.carousel-fullwidth .placeholder i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: rgba(255,255,255,0.9);
+}
+
+.carousel-fullwidth .placeholder span {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-family: 'Sora', sans-serif;
+}
+
+.carousel-fullwidth .placeholder small {
+    font-size: 12px;
+    opacity: 0.8;
+    font-family: 'Sora', sans-serif;
+}
+
+/* Ajuste da animação */
+@keyframes scrollFullWidth {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 10 - 20px * 10));
+    }
+}
+
+@media (max-width: 768px) {
+    @keyframes scrollFullWidth {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-180px * 10 - 20px * 10));
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    @keyframes scrollFullWidth {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-150px * 10 - 20px * 10));
+        }
     }
 }

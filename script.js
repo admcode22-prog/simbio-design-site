@@ -59,34 +59,29 @@ function initProjectsCarousel() {
     
     if (!carousel) return;
     
-    // Projetos para preencher a tela toda
+    // Projetos para preencher a tela toda - URLs mais reais
     const projects = [
-        { id: 1, name: 'Restaurante Elegante', image: 'proj1.png', category: 'Gastronomia' },
-        { id: 2, name: 'E-commerce Moda', image: 'proj2.png', category: 'E-commerce' },
-        { id: 3, name: 'App Fitness', image: 'proj3.png', category: 'Mobile' },
-        { id: 4, name: 'Site Corporativo', image: 'proj4.png', category: 'Corporate' },
-        { id: 5, name: 'Landing Page', image: 'proj5.png', category: 'Marketing' },
-        { id: 6, name: 'Blog Pessoal', image: 'proj6.png', category: 'Blog' },
-        { id: 7, name: 'Loja Artesanato', image: 'proj7.png', category: 'E-commerce' },
-        { id: 8, name: 'Consultório Médico', image: 'proj8.png', category: 'Saúde' },
-        { id: 9, name: 'Agência de Viagens', image: 'proj9.png', category: 'Turismo' },
-        { id: 10, name: 'Studio de Yoga', image: 'proj10.png', category: 'Wellness' },
-        { id: 11, name: 'Cafeteria Artesanal', image: 'proj11.png', category: 'Gastronomia' },
-        { id: 12, name: 'Loja de Roupas', image: 'proj12.png', category: 'Moda' },
-        { id: 13, name: 'Escritório Advocacia', image: 'proj13.png', category: 'Corporate' },
-        { id: 14, name: 'Academia', image: 'proj14.png', category: 'Fitness' },
-        { id: 15, name: 'Salão de Beleza', image: 'proj15.png', category: 'Beleza' }
+        { id: 1, name: 'Aubrigo', image: 'projects/proj1.png', category: 'Hotel para cachorro' },
+        { id: 2, name: 'Amanda Camoiço', image: 'projects/proj2.png', category: 'Bauty Artist' },
+        { id: 3, name: 'AdmCode', image: 'projects/proj3.png', category: 'Tecnologia' },
+        { id: 4, name: 'GW', image: 'projects/proj4.png', category: 'Centro Automotivo' },
+        { id: 5, name: 'Lazulli', image: 'projects/proj5.png', category: 'Joalheria' },
+        { id: 6, name: 'Aubrigo', image: 'projects/proj6.png', category: 'Hotel para cachorro' },
+        { id: 7, name: 'Loja Artesanato', image: 'projects/proj7.png', category: 'E-commerce' },
+        { id: 8, name: 'Consultório Médico', image: 'projects/proj8.png', category: 'Saúde' },
+        { id: 9, name: 'Agência de Viagens', image: 'projects/proj9.png', category: 'Turismo' },
+        { id: 10, name: 'Studio de Yoga', image: 'projects/proj10.png', category: 'Wellness' }
     ];
     
     // Duplica várias vezes para criar loop longo
-    const duplicatedProjects = [...projects, ...projects, ...projects, ...projects];
+    const duplicatedProjects = [...projects, ...projects, ...projects];
     
-    // Gera HTML para os itens
+    // Gera HTML para os itens com fallback
     function generateCarouselHTML(projectsArray) {
         return projectsArray.map(project => `
             <div class="carousel-item">
                 <div class="project-image">
-                    <img src="assets/images/projects/${project.image}" 
+                    <img src="assets/images/${project.image}" 
                          alt="${project.name}" 
                          loading="lazy"
                          onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\"placeholder\"><i class=\"fas fa-palette\"></i><span>${project.name}</span><small>${project.category}</small></div>';">
@@ -108,9 +103,9 @@ function initProjectsCarousel() {
         let itemWidth = 250; // Default para desktop
         
         if (viewportWidth < 768) {
-            itemWidth = 150;
+            itemWidth = 180;
         } else if (viewportWidth < 1024) {
-            itemWidth = 200;
+            itemWidth = 220;
         }
         
         const gap = 20;
@@ -126,7 +121,7 @@ function initProjectsCarousel() {
         
         // Ajusta velocidade da animação
         const speedMultiplier = viewportWidth / 1920;
-        const baseDuration = 120;
+        const baseDuration = 90; // Reduzido para animação mais rápida
         const animationDuration = baseDuration / speedMultiplier;
         carousel.style.animationDuration = `${animationDuration}s`;
     }
