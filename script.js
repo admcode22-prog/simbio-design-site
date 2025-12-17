@@ -62,15 +62,11 @@ function initProjectsCarousel() {
     // Projetos para preencher a tela toda - URLs mais reais
     const projects = [
         { id: 1, name: 'Aubrigo', image: 'projects/proj1.png', category: 'Hotel para cachorro' },
-        { id: 2, name: 'Amanda Camoiço', image: 'projects/proj2.png', category: 'Bauty Artist' },
+        { id: 2, name: 'Amanda Camoiço', image: 'projects/proj2.png', category: 'Design de sobramcelha' },
         { id: 3, name: 'AdmCode', image: 'projects/proj3.png', category: 'Tecnologia' },
         { id: 4, name: 'GW', image: 'projects/proj4.png', category: 'Centro Automotivo' },
         { id: 5, name: 'Lazulli', image: 'projects/proj5.png', category: 'Joalheria' },
-        { id: 6, name: 'Aubrigo', image: 'projects/proj6.png', category: 'Hotel para cachorro' },
-        { id: 7, name: 'Loja Artesanato', image: 'projects/proj7.png', category: 'E-commerce' },
-        { id: 8, name: 'Consultório Médico', image: 'projects/proj8.png', category: 'Saúde' },
-        { id: 9, name: 'Agência de Viagens', image: 'projects/proj9.png', category: 'Turismo' },
-        { id: 10, name: 'Studio de Yoga', image: 'projects/proj10.png', category: 'Wellness' }
+        { id: 6, name: 'Aubrigo', image: 'projects/proj6.png', category: 'Hotel para cachorro' }     
     ];
     
     // Duplica várias vezes para criar loop longo
